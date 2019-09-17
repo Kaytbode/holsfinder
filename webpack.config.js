@@ -1,6 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv');
+
+// https://medium.com/@trekinbami/using-environment-variables-in-react-6b0a99d83cf5
+const env = dotenv.config().parsed;
+
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  const obj = prev;
+  obj[`process.env.${next}`] = JSON.stringify(env[next]);
+  return obj;
+}, {});
 
 module.exports = {
   entry: './src/app/index.jsx',
@@ -32,6 +42,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin({
       template: 'public/index.html'
     })

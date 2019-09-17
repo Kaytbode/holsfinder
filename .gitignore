@@ -4,3 +4,6 @@ node_modules/
 # development
 dist/
 pubTest/
+
+# sacred
+.env
