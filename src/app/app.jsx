@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import { Form } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import DisplayHolidays from './displayholidays';
 import '../styles/scss/app.scss';
 import DisplayNavs from './nav';
@@ -47,15 +47,25 @@ class App extends Component {
         <DisplayNavs />
         <div className="container">
           <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Country</Form.Label>
-              <Form.Control type="text" value={country} onChange={this.handleCountryChange} placeholder="Enter country" />
-            </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Month</Form.Label>
-              <Form.Control type="text" value={month} onChange={this.handleMonthChange} placeholder="Enter month" />
-            </Form.Group>
-            <Form.Control className="display" type="submit" value="Get Holidays" />
+            <Row>
+              <Col>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Country</Form.Label>
+                  <Form.Control type="text" value={country} onChange={this.handleCountryChange} placeholder="Enter country" />
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Month</Form.Label>
+                  <Form.Control type="text" value={month} onChange={this.handleMonthChange} placeholder="Enter month" />
+                </Form.Group> 
+              </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+              <Col xs={{ span: 4, offset: 2 }} md={{ span: 4, offset: 0 }}>
+                <Form.Control className="display" type="submit" value="Get Holidays" />
+              </Col>
+            </Row>
           </Form>
           <DisplayHolidays holidays={holidays} />
         </div>
